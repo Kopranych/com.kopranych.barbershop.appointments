@@ -1,10 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
   id("org.springframework.boot") version "2.4.0"
   id("io.spring.dependency-management") version "1.0.10.RELEASE"
   kotlin("jvm") version "1.4.10"
   kotlin("plugin.spring") version "1.4.10"
+  kotlin("kapt") version "1.4.10"
 }
 
 group = "com.kopranych.barbershop"
@@ -26,6 +28,10 @@ dependencies {
   implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
   implementation("org.springframework.cloud:spring-cloud-starter-config")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+  implementation("org.springframework.boot:spring-boot-starter-jdbc")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+  implementation("org.mapstruct:mapstruct:1.4.1.Final")
+  kapt("org.mapstruct:mapstruct-processor:1.4.1.Final")
   runtimeOnly("org.postgresql:postgresql")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,8 +1,9 @@
 package com.kopranych.barbershop.appointments.controller.advice
 
-import com.kopranych.barbershop.clients.model.exception.ExceptionResponse
-import com.kopranych.barbershop.clients.model.exception.NotFoundException
-import com.kopranych.barbershop.clients.util.Logging
+import com.kopranych.barbershop.appointments.model.exception.BadRequestException
+import com.kopranych.barbershop.appointments.model.exception.ExceptionResponse
+import com.kopranych.barbershop.appointments.model.exception.NotFoundException
+import com.kopranych.barbershop.appointments.util.Logging
 import org.apache.commons.lang.exception.ExceptionUtils.getStackTrace
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -29,6 +30,14 @@ class ExceptionControllerAdvice : Logging {
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   @ExceptionHandler(Exception::class)
   fun handleUnpredictedExceptions(request: HttpServletRequest, e: Exception): ExceptionResponse {
+    exceptionLog(request, e)
+    return exceptionResponse(e)
+  }
+
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(BadRequestException::class)
+  fun handleBadRequestExceptions(request: HttpServletRequest, e: BadRequestException): ExceptionResponse {
     exceptionLog(request, e)
     return exceptionResponse(e)
   }
