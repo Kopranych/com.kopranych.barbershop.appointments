@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
   id("org.springframework.boot") version "2.4.0"
@@ -27,6 +26,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
   implementation("org.springframework.cloud:spring-cloud-starter-config")
+  implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
   implementation("org.springframework.boot:spring-boot-starter-jdbc")
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
